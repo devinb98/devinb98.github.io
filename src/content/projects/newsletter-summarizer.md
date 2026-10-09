@@ -4,7 +4,7 @@ tagline: A three-agent pipeline that reads my inbox and writes me a digest.
 summary: LangGraph + Claude pipeline — Parser, Summarizer, and Editor agents turn each morning's newsletters into one clean digest, delivered back to my inbox on a cron.
 role: ai
 year: 2026
-order: 3
+order: 4
 featured: true
 media: /media/newsletter/pipeline.svg
 mediaAlt: Diagram of the Parser, Summarizer, and Editor agent pipeline
