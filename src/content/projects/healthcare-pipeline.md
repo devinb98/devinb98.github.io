@@ -15,6 +15,7 @@ specs:
   - { label: 'Dashboard', value: 'Streamlit' }
   - { label: 'Facilities', value: '~14,700' }
 links:
+  - { label: 'Live dashboard', href: 'https://devinb98-healthcare-dashboard-app-58tt5l.streamlit.app/' }
   - { label: 'GitHub', href: 'https://github.com/devinb98/healthcare-dashboard' }
 ---
 
