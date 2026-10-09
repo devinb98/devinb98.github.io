@@ -5,13 +5,12 @@ summary: A short note on what I'm doing here — learning hard things in public,
 tags: [meta]
 ---
 
-I learn best when there's something real at stake — a project that has to
-actually work, not just a tutorial I nodded along to. This site is where those
-projects live, along with the notes I take while figuring them out.
+A career journey is not always linear. This is true for many and extremely true for me.
 
-The plan for this space is simple: when I pick up something unfamiliar — right
-now that's OpenUSD and agent systems — I'll write up the parts that tripped me,
-the fixes that weren't obvious, and what I'd tell myself if I started over. Less
-"here's the finished thing," more "here's the wall I hit and how I got past it."
+I'm trying new things out, like learning dbt, Snowflake, AWS services, and everything AI.
 
-If that's useful to you too, good. Mostly it keeps me honest.
+I am still not sure what the next thing to "click" will be, but until then I'm going to keep learning things.
+
+Right now I'm trying to figure out my next career step, so I've been doing some noodling with solution engineering and Physical AI, hence the record player project.
+
+It's super detailed on surfaces, motion, and the nature of different joints, which I thought was really cool, but also really tedious. Getting something to move one way versus another requires manually reassigning the joint type so it moves the way you want to express movement. I only modeled animations, but with the right software packs (that I don't have on my Mac) you can also model the physics, which I'd love to mess around with!
