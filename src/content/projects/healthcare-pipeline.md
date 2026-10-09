@@ -6,8 +6,7 @@ role: builder
 year: 2025
 order: 3
 featured: true
-media: /media/healthcare/pipeline.svg
-mediaAlt: Data flowing from Google Drive through AWS Lambda and Glue into Snowflake and Streamlit
+diagram: healthcare
 specs:
   - { label: 'Ingest', value: 'Google Drive API' }
   - { label: 'Compute', value: 'AWS Lambda + Glue' }

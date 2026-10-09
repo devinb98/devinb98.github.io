@@ -6,8 +6,7 @@ role: ai
 year: 2026
 order: 4
 featured: true
-media: /media/newsletter/pipeline.svg
-mediaAlt: Diagram of the Parser, Summarizer, and Editor agent pipeline
+diagram: newsletter
 specs:
   - { label: 'Agents', value: '3 (graph)' }
   - { label: 'Orchestration', value: 'LangGraph' }

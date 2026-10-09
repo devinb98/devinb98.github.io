@@ -1,22 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="A rep's source documents on the left feed an action plan on the right, where each step carries a citation back to its source.">
-  <style>
-    :root { --bg:#f4ecda; --ink:#2b271e; --muted:#5b5340; --faint:#6e6550; --line:#d0bd97; --accent:#3f6630; --soft:#dee8d0; --node:#fbf6ec; }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg:#2a261d; --ink:#ece3d0; --muted:#b5ad98; --faint:#8e846c; --line:#3c3528; --accent:#a6cb8c; --soft:#2f3a25; --node:#332e23; }
-    }
-    .bg { fill: var(--bg); }
-    .card { fill: var(--node); stroke: var(--line); stroke-width: 1.5; }
-    .plan { fill: var(--node); stroke: var(--accent); stroke-width: 1.75; }
-    .title { fill: var(--ink); font-family: 'Archivo', system-ui, sans-serif; font-weight: 650; font-size: 19px; }
-    .doc { fill: var(--muted); font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; }
-    .num { fill: var(--accent); font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; }
-    .textline { stroke: var(--faint); stroke-width: 5; stroke-linecap: round; opacity: 0.5; }
-    .planline { stroke: var(--muted); stroke-width: 5; stroke-linecap: round; opacity: 0.65; }
-    .link { stroke: var(--accent); stroke-width: 1.25; fill: none; opacity: 0.5; stroke-dasharray: 3 3; }
-    .chip { fill: var(--soft); stroke: var(--accent); stroke-width: 1; }
-    .cite { fill: var(--accent); font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; }
-    .heading { fill: var(--ink); font-family: 'Archivo', system-ui, sans-serif; font-weight: 650; font-size: 15px; }
-  </style>
   <rect class="bg" x="0" y="0" width="800" height="500" rx="10" />
 
   <!-- source documents -->

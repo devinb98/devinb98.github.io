@@ -15,6 +15,7 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     media: z.string().optional(), // path under /public, e.g. /media/record-player/loop.gif
     still: z.string().optional(), // static fallback shown to prefers-reduced-motion users
+    diagram: z.string().optional(), // name of an inlined SVG in src/diagrams (theme-aware)
     mediaAlt: z.string().optional(),
     // mono spec panel — label/value pairs of genuine data
     specs: z.array(z.object({ label: z.string(), value: z.string() })).default([]),

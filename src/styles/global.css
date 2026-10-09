@@ -1,21 +1,23 @@
 /* ------------------------------------------------------------------ *
- *  Design tokens — organic: warm sand paper, sage accent.
- *  Body #EBDBBC + accent #87AE73 (kept as decorative green); the
- *  interactive accent is a deeper sage so text clears WCAG AA.
+ *  Design tokens — organic sand + sage, dark-first.
+ *  Default is dark (warm near-black ground, cream text, sage). A nav
+ *  toggle flips to [data-theme="light"] — a soft warm-paper mode where
+ *  manila (#EBDBBC) is a surface accent, not the whole page — and
+ *  persists the choice. Interactive accent is a deeper sage for AA.
  * ------------------------------------------------------------------ */
 :root {
-  color-scheme: light;
-  --paper: #ebdbbc;        /* base surface — warm sand */
-  --surface: #f4ecda;      /* panels / cards (lift off the paper) */
-  --surface-2: #fbf6ec;    /* raised, near warm-white */
-  --ink: #2b271e;          /* headings + body — warm espresso */
-  --muted: #5b5340;        /* secondary text */
-  --faint: #6e6550;        /* captions, meta */
-  --line: #d9c8a4;         /* hairline borders */
-  --accent: #3f6630;       /* links, CTAs, active — deep sage (AA) */
-  --accent-soft: #dee8d0;  /* pale sage wash */
+  color-scheme: dark;
+  --paper: #211e17;        /* warm near-black ground */
+  --surface: #2a261d;      /* panels / cards */
+  --surface-2: #332e23;    /* raised */
+  --ink: #ece3d0;          /* warm cream text */
+  --muted: #b5ad98;        /* secondary text */
+  --faint: #8e846c;        /* captions, meta */
+  --line: #3c3528;         /* hairline borders */
+  --accent: #a6cb8c;       /* bright sage — links, CTAs, active */
+  --accent-soft: #2f3a25;  /* sage wash */
   --accent-2: #87ae73;     /* your sage — decorative fills, diagrams */
-  --on-accent: #ffffff;    /* text/icons on an accent fill */
+  --on-accent: #211e17;    /* dark text on light-sage fills */
 
   --font-display: 'Archivo', system-ui, sans-serif;
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
@@ -35,21 +37,19 @@
   --radius: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    color-scheme: dark;
-    --paper: #211e17;        /* warm near-black */
-    --surface: #2a261d;
-    --surface-2: #332e23;
-    --ink: #ece3d0;          /* warm cream text */
-    --muted: #b5ad98;
-    --faint: #8e846c;
-    --line: #3c3528;
-    --accent: #a6cb8c;       /* bright sage reads on dark */
-    --accent-soft: #2f3a25;
-    --accent-2: #87ae73;
-    --on-accent: #211e17;    /* dark text on light-sage fills */
-  }
+:root[data-theme='light'] {
+  color-scheme: light;
+  --paper: #faf6ed;        /* soft warm paper — no longer a wall of manila */
+  --surface: #ebdbbc;      /* manila as a surface accent (cards, diagrams) */
+  --surface-2: #fffdf8;    /* raised, near warm-white */
+  --ink: #2b271e;          /* warm espresso */
+  --muted: #5b5340;
+  --faint: #6e6550;
+  --line: #e2d4b6;
+  --accent: #3f6630;       /* deep sage keeps text AA on light */
+  --accent-soft: #dee8d0;
+  --accent-2: #87ae73;
+  --on-accent: #ffffff;
 }
 
 *,

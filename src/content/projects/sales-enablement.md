@@ -6,8 +6,7 @@ role: ai
 year: 2026
 order: 2
 featured: true
-media: /media/sales-enablement/cover.svg
-mediaAlt: A cited RAG action plan generated from a sales rep's own documents
+diagram: sales-enablement
 specs:
   - { label: 'Client', value: 'React' }
   - { label: 'Server', value: 'Flask' }

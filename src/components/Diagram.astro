@@ -1,0 +1,112 @@
+---
+// Inlines an SVG diagram from src/diagrams so it inherits the page's theme
+// tokens — which means it follows the site's theme toggle, unlike an <img>
+// SVG. All diagram styling lives here (scoped) so the SVGs' generic class
+// names (.title, .label, .node…) can't leak into the rest of the page.
+interface Props {
+  name: string;
+  class?: string;
+}
+const { name, class: className } = Astro.props;
+const mods = import.meta.glob('../diagrams/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+const svg = (mods[`../diagrams/${name}.svg`] as string | undefined) ?? '';
+---
+
+{svg && <div class:list={['diagram', className]} set:html={svg} />}
+
+<style>
+  .diagram {
+    display: block;
+    line-height: 0;
+  }
+  .diagram :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* diagram vocabulary — scoped to .diagram, driven by the page's theme */
+  .diagram :global(.bg) {
+    fill: var(--surface);
+  }
+  .diagram :global(.node),
+  .diagram :global(.card) {
+    fill: var(--surface-2);
+    stroke: var(--line);
+    stroke-width: 1.5;
+  }
+  .diagram :global(.agent),
+  .diagram :global(.hub),
+  .diagram :global(.plan) {
+    stroke: var(--accent);
+    stroke-width: 1.75;
+  }
+  .diagram :global(.plan) {
+    fill: var(--surface-2);
+  }
+  .diagram :global(.title) {
+    fill: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: 20px;
+  }
+  .diagram :global(.heading) {
+    fill: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: 15px;
+  }
+  .diagram :global(.label),
+  .diagram :global(.doc) {
+    fill: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .diagram :global(.step),
+  .diagram :global(.num) {
+    fill: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .diagram :global(.cite) {
+    fill: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .diagram :global(.flow) {
+    stroke: var(--line);
+    stroke-width: 1.75;
+    fill: none;
+  }
+  .diagram :global(.arrow) {
+    fill: var(--line);
+  }
+  .diagram :global(.textline) {
+    stroke: var(--faint);
+    stroke-width: 5;
+    stroke-linecap: round;
+    opacity: 0.5;
+  }
+  .diagram :global(.planline) {
+    stroke: var(--muted);
+    stroke-width: 5;
+    stroke-linecap: round;
+    opacity: 0.65;
+  }
+  .diagram :global(.link) {
+    stroke: var(--accent);
+    stroke-width: 1.25;
+    fill: none;
+    opacity: 0.5;
+    stroke-dasharray: 3 3;
+  }
+  .diagram :global(.chip) {
+    fill: var(--accent-soft);
+    stroke: var(--accent);
+    stroke-width: 1;
+  }
+</style>

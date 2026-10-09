@@ -6,8 +6,7 @@ role: builder
 year: 2025
 order: 5
 featured: false
-media: /media/store/pipeline.svg
-mediaAlt: Incremental ingestion from S3 through dbt into Snowflake, then Python analysis
+diagram: store
 specs:
   - { label: 'Source', value: 'S3 (incremental)' }
   - { label: 'Transform', value: 'dbt' }

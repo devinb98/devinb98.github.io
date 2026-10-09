@@ -1,4 +1,6 @@
 ---
+import Diagram from './Diagram.astro';
+
 interface Spec {
   label: string;
   value: string;
@@ -11,6 +13,7 @@ interface Props {
   role: 'learner' | 'builder' | 'ai';
   media?: string;
   still?: string;
+  diagram?: string;
   mediaAlt?: string;
   specs?: Spec[];
 }
@@ -21,13 +24,15 @@ const roleLabel: Record<Props['role'], string> = {
   ai: 'ai systems',
 };
 
-const { title, tagline, summary, href, role, media, still, mediaAlt, specs = [] } = Astro.props;
+const { title, tagline, summary, href, role, media, still, diagram, mediaAlt, specs = [] } = Astro.props;
 ---
 
 <article class="card">
   <a href={href} class="media" aria-label={`View ${title}`}>
     {
-      media ? (
+      diagram ? (
+        <Diagram name={diagram} />
+      ) : media ? (
         <picture>
           {still && (
             <source srcset={still} media="(prefers-reduced-motion: reduce)" />

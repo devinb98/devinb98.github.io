@@ -12,33 +12,69 @@ const isActive = (href: string) =>
 
 <nav class="nav wrap" aria-label="Primary">
   <a href="/" class="brand">devin&nbsp;bajaj</a>
-  <ul>
-    {
-      links
-        .filter((l) => l.href !== '/')
-        .map((l) => (
-          <li>
-            <a
-              href={l.href}
-              class="mono-link"
-              aria-current={isActive(l.href) ? 'page' : undefined}
-            >
-              <span class="slash">/</span>{l.label}
-            </a>
-          </li>
-        ))
-    }
-  </ul>
+  <div class="right">
+    <ul>
+      {
+        links
+          .filter((l) => l.href !== '/')
+          .map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="mono-link"
+                aria-current={isActive(l.href) ? 'page' : undefined}
+              >
+                <span class="slash">/</span>{l.label}
+              </a>
+            </li>
+          ))
+      }
+    </ul>
+    <button id="theme-toggle" class="theme-switch" type="button" role="switch" aria-label="Color theme">
+      <svg class="side moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5z" />
+      </svg>
+      <span class="track"><span class="knob" aria-hidden="true"></span></span>
+      <svg class="side sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="4.4" />
+        <path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" />
+      </svg>
+    </button>
+  </div>
 </nav>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    const root = document.documentElement;
+    const sync = () => {
+      const light = root.getAttribute('data-theme') === 'light';
+      btn.setAttribute('aria-checked', String(light));
+    };
+    sync();
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      sync();
+    });
+  })();
+</script>
 
 <style>
   .nav {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
     padding-block: 1.25rem;
     flex-wrap: wrap;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
   }
   .brand {
     font-family: var(--font-display);
@@ -75,5 +111,65 @@ const isActive = (href: string) =>
   }
   .slash {
     color: var(--faint);
+  }
+
+  .theme-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    line-height: 0;
+  }
+  .theme-switch .side {
+    width: 13px;
+    height: 13px;
+    flex: none;
+  }
+  .theme-switch .moon {
+    color: var(--ink);
+  }
+  .theme-switch .sun {
+    color: var(--faint);
+  }
+  :global(:root[data-theme='light']) .theme-switch .moon {
+    color: var(--faint);
+  }
+  :global(:root[data-theme='light']) .theme-switch .sun {
+    color: var(--ink);
+  }
+  .theme-switch .track {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface-2);
+    flex: none;
+  }
+  .theme-switch .knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 0.18s ease;
+  }
+  :global(:root[data-theme='light']) .theme-switch .knob {
+    transform: translateX(18px);
+  }
+  .theme-switch:hover .track {
+    border-color: var(--accent);
+  }
+  .theme-switch:focus-visible {
+    outline: none;
+  }
+  .theme-switch:focus-visible .track {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 </style>

@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Prose from '../../components/Prose.astro';
+import Diagram from '../../components/Diagram.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -23,7 +24,11 @@ const d = project.data;
         <p class="tagline">{d.tagline}</p>
       </header>
 
-      {d.media && (
+      {d.diagram ? (
+        <figure class="lead lead-diagram">
+          <Diagram name={d.diagram} />
+        </figure>
+      ) : d.media ? (
         <figure class="lead">
           <picture>
             {d.still && (
@@ -32,7 +37,7 @@ const d = project.data;
             <img src={d.media} alt={d.mediaAlt ?? ''} />
           </picture>
         </figure>
-      )}
+      ) : null}
 
       <div class="layout">
         <Prose>
