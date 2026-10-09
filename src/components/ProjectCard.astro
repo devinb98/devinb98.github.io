@@ -1,0 +1,157 @@
+---
+interface Spec {
+  label: string;
+  value: string;
+}
+interface Props {
+  title: string;
+  tagline: string;
+  summary: string;
+  href: string;
+  role: 'learner' | 'builder' | 'ai';
+  media?: string;
+  still?: string;
+  mediaAlt?: string;
+  specs?: Spec[];
+}
+
+const roleLabel: Record<Props['role'], string> = {
+  learner: 'learning project',
+  builder: 'shipped build',
+  ai: 'ai systems',
+};
+
+const { title, tagline, summary, href, role, media, still, mediaAlt, specs = [] } = Astro.props;
+---
+
+<article class="card">
+  <a href={href} class="media" aria-label={`View ${title}`}>
+    {
+      media ? (
+        <picture>
+          {still && (
+            <source srcset={still} media="(prefers-reduced-motion: reduce)" />
+          )}
+          <img src={media} alt={mediaAlt ?? ''} loading="lazy" />
+        </picture>
+      ) : (
+        <div class="media-ph" aria-hidden="true">
+          <span class="mono">media pending</span>
+        </div>
+      )
+    }
+  </a>
+
+  <div class="body">
+    <p class="role mono">{roleLabel[role]}</p>
+    <h3><a href={href}>{title}</a></h3>
+    <p class="tagline">{tagline}</p>
+    <p class="summary">{summary}</p>
+  </div>
+
+  {
+    specs.length > 0 && (
+      <dl class="specs">
+        {specs.map((s) => (
+          <div class="spec">
+            <dt class="mono">{s.label}</dt>
+            <dd class="mono">{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+</article>
+
+<style>
+  .card {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 0 2rem;
+    align-items: start;
+    padding-block: 2.25rem;
+    border-top: 1px solid var(--line);
+  }
+  .card:first-child {
+    border-top: none;
+  }
+
+  .media {
+    grid-row: 1 / span 2;
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .media:hover {
+    text-decoration: none;
+  }
+  .media img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .media-ph {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 10;
+    color: var(--faint);
+  }
+
+  .role {
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  h3 {
+    font-size: var(--step-2);
+    margin-bottom: 0.3rem;
+  }
+  h3 a {
+    color: var(--ink);
+  }
+  h3 a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .tagline {
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .summary {
+    color: var(--ink);
+    max-width: 46ch;
+    margin: 0;
+  }
+
+  .specs {
+    margin: 1.25rem 0 0;
+    display: grid;
+    gap: 0.35rem;
+    align-self: start;
+  }
+  .spec {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px dotted var(--line);
+  }
+  .spec dt {
+    color: var(--faint);
+  }
+  .spec dd {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .card {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .media {
+      grid-row: auto;
+    }
+  }
+</style>

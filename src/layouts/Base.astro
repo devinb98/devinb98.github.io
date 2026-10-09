@@ -1,0 +1,72 @@
+---
+import '@fontsource/archivo/400.css';
+import '@fontsource/archivo/600.css';
+import '@fontsource/archivo/700.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Devin Bajaj',
+  description = 'Devin Bajaj — learner and AI-native builder. I learn by building, in the open.',
+} = Astro.props;
+
+const fullTitle = title === 'Devin Bajaj' ? title : `${title} — Devin Bajaj`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <header>
+      <Nav />
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <span class="mono">devinb98.github.io</span>
+        <span class="mono footer-year">© {new Date().getFullYear()} Devin Bajaj</span>
+      </div>
+    </footer>
+
+    <style>
+      main {
+        min-height: 60vh;
+      }
+      .footer {
+        border-top: 1px solid var(--line);
+        margin-top: 2rem;
+        padding-block: 2rem;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .footer-year {
+        color: var(--faint);
+      }
+    </style>
+  </body>
+</html>

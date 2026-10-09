@@ -1,0 +1,156 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Placeholder CV data — swap for the real thing (and drop resume.pdf in /public).
+const skills = [
+  'Python', 'OpenUSD', 'LangGraph', 'Claude / LLM APIs',
+  'Git & GitHub Actions', '3D / simulation', 'Gmail / Google APIs',
+];
+
+const experience = [
+  {
+    when: '2026',
+    what: 'Self-directed learning projects',
+    detail: 'Robotics simulation in pure OpenUSD; multi-agent systems with Claude.',
+  },
+];
+---
+
+<Base title="Resume" description="Resume and background for Devin Bajaj.">
+  <section class="section">
+    <div class="wrap">
+      <header class="page-head">
+        <div>
+          <h1>Resume</h1>
+          <p class="lede">A short version here; the full PDF is one click away.</p>
+        </div>
+        <a href="/resume.pdf" class="btn mono">Download PDF</a>
+      </header>
+
+      <div class="cv">
+        <section class="block">
+          <h2>Focus</h2>
+          <p>
+            Builder learning across robotics simulation and applied AI. I get up
+            to speed on unfamiliar stacks by shipping real projects, and I
+            document the work as I go.
+          </p>
+        </section>
+
+        <section class="block">
+          <h2>Skills</h2>
+          <ul class="skills">
+            {skills.map((s) => <li class="mono">{s}</li>)}
+          </ul>
+        </section>
+
+        <section class="block">
+          <h2>Recent</h2>
+          <dl class="exp">
+            {experience.map((e) => (
+              <div class="exp-row">
+                <dt class="mono">{e.when}</dt>
+                <dd>
+                  <strong>{e.what}</strong>
+                  <span>{e.detail}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1.5rem;
+  }
+  .page-head h1 {
+    font-size: var(--step-4);
+    margin-bottom: 0.5rem;
+  }
+  .lede {
+    color: var(--muted);
+    margin: 0;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    font-size: var(--step--1);
+    white-space: nowrap;
+  }
+  .btn:hover {
+    text-decoration: none;
+    filter: brightness(1.08);
+  }
+
+  .cv {
+    display: grid;
+    gap: 2.5rem;
+    max-width: var(--measure);
+  }
+  .block h2 {
+    font-size: var(--step-1);
+    margin-bottom: 0.75rem;
+  }
+  .block p {
+    margin: 0;
+    color: var(--ink);
+  }
+  .skills {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .skills li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.3rem 0.65rem;
+    color: var(--muted);
+  }
+  .exp {
+    margin: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .exp-row {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1.5rem;
+  }
+  .exp-row dt {
+    color: var(--faint);
+  }
+  .exp-row dd {
+    margin: 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .exp-row dd span {
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px) {
+    .exp-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

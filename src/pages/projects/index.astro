@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Base title="Projects" description="Projects by Devin Bajaj — robotics simulation in OpenUSD and agent systems built with Claude.">
+  <section class="section">
+    <div class="wrap">
+      <header class="page-head">
+        <h1>Projects</h1>
+        <p class="lede">
+          Each of these started as something I didn't know how to do. The spec
+          panels are the real numbers.
+        </p>
+      </header>
+
+      <div class="list">
+        {projects.map((p) => (
+          <ProjectCard
+            href={`/projects/${p.id}`}
+            title={p.data.title}
+            tagline={p.data.tagline}
+            summary={p.data.summary}
+            role={p.data.role}
+            media={p.data.media}
+            still={p.data.still}
+            mediaAlt={p.data.mediaAlt}
+            specs={p.data.specs}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head {
+    margin-bottom: 1rem;
+  }
+  .page-head h1 {
+    font-size: var(--step-4);
+    margin-bottom: 0.75rem;
+  }
+  .lede {
+    font-size: var(--step-1);
+    color: var(--muted);
+    max-width: 48ch;
+  }
+</style>

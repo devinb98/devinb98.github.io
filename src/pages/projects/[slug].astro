@@ -1,0 +1,142 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Prose from '../../components/Prose.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const d = project.data;
+---
+
+<Base title={d.title} description={d.summary}>
+  <article class="section">
+    <div class="wrap">
+      <a href="/projects" class="back mono">/projects</a>
+
+      <header class="head">
+        <h1>{d.title}</h1>
+        <p class="tagline">{d.tagline}</p>
+      </header>
+
+      {d.media && (
+        <figure class="lead">
+          <picture>
+            {d.still && (
+              <source srcset={d.still} media="(prefers-reduced-motion: reduce)" />
+            )}
+            <img src={d.media} alt={d.mediaAlt ?? ''} />
+          </picture>
+        </figure>
+      )}
+
+      <div class="layout">
+        <Prose>
+          <Content />
+        </Prose>
+
+        <aside class="side">
+          {d.specs.length > 0 && (
+            <dl class="specs">
+              {d.specs.map((s) => (
+                <div class="spec">
+                  <dt class="mono">{s.label}</dt>
+                  <dd class="mono">{s.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {d.links.length > 0 && (
+            <ul class="links">
+              {d.links.map((l) => (
+                <li><a href={l.href} class="mono">{l.label}</a></li>
+              ))}
+            </ul>
+          )}
+        </aside>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .back {
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+  .head {
+    margin-bottom: 2rem;
+  }
+  .head h1 {
+    font-size: var(--step-4);
+    margin-bottom: 0.75rem;
+  }
+  .tagline {
+    font-size: var(--step-1);
+    color: var(--muted);
+    max-width: 50ch;
+  }
+  .lead {
+    margin: 0 0 2.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .lead img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 16rem;
+    gap: 3rem;
+    align-items: start;
+  }
+  .side {
+    position: sticky;
+    top: 2rem;
+  }
+  .specs {
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .spec {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+  .spec dt {
+    color: var(--faint);
+  }
+  .spec dd {
+    margin: 0;
+    color: var(--ink);
+  }
+  .links {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 760px) {
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .side {
+      position: static;
+      order: -1;
+    }
+  }
+</style>

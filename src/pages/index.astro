@@ -1,0 +1,189 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+// Lead media — the record-player render loop (static still for reduced-motion).
+const leadMedia = '/media/record-player/loop.gif';
+const leadStill = '/media/record-player/still.png';
+---
+
+<Base>
+  <Hero media={leadMedia} still={leadStill} mediaAlt="The OpenUSD robotic record-player simulation in motion" />
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <h2>About</h2>
+      <div class="about-body">
+        <p>
+          I'm a builder who treats unfamiliar territory as the point. When a
+          tool or field is new to me, I don't read around it — I set myself a
+          real, finishable project and learn the thing by making it work.
+        </p>
+        <p>
+          Two threads run through my work right now. One is the physical world:
+          I've been teaching myself OpenUSD from scratch to simulate a small
+          robotic cell. The other is AI as a material: I build agent pipelines
+          with Claude that do useful work on their own. I write up the hard
+          parts as I go, so the learning is legible, not just the result.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured projects -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <a href="/projects" class="mono">/projects</a>
+      </div>
+      {projects.map((p) => (
+        <ProjectCard
+          href={`/projects/${p.id}`}
+          title={p.data.title}
+          tagline={p.data.tagline}
+          summary={p.data.summary}
+          role={p.data.role}
+          media={p.data.media}
+          still={p.data.still}
+          mediaAlt={p.data.mediaAlt}
+          specs={p.data.specs}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Recent writing -->
+  {posts.length > 0 && (
+    <section class="section" id="writing">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Recent writing</h2>
+          <a href="/writing" class="mono">/writing</a>
+        </div>
+        <ul class="post-list">
+          {posts.map((post) => (
+            <li>
+              <a href={`/writing/${post.id}`} class="post-link">
+                <time datetime={post.data.date.toISOString().slice(0, 10)} class="mono">
+                  {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })}
+                </time>
+                <span class="post-title">{post.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Get in touch</h2>
+      </div>
+      <p class="contact-lede">
+        Building something in robotics, simulation, or AI — or just want to
+        compare notes on learning hard things? Say hello.
+      </p>
+      <ul class="links">
+        <li><a href="mailto:devinb98@gmail.com">devinb98@gmail.com</a></li>
+        <li><a href="https://github.com/devinb98">github.com/devinb98</a></li>
+        <li><a href="/resume">Resume</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .about-grid h2 {
+    font-size: var(--step-2);
+  }
+  .about-body {
+    max-width: var(--measure);
+  }
+  .about-body p {
+    font-size: var(--step-1);
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .post-link {
+    display: flex;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .post-link:hover {
+    text-decoration: none;
+  }
+  .post-link:hover .post-title {
+    color: var(--accent);
+  }
+  .post-link time {
+    color: var(--faint);
+    flex: none;
+    width: 7rem;
+  }
+  .post-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--step-1);
+  }
+
+  .contact-lede {
+    font-size: var(--step-1);
+    color: var(--muted);
+    max-width: 50ch;
+  }
+  .links {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem 2rem;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+  }
+
+  @media (max-width: 640px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    .post-link {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .post-link time {
+      width: auto;
+    }
+  }
+</style>
