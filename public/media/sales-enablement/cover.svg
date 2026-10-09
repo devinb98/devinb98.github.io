@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="A rep's source documents on the left feed an action plan on the right, where each step carries a citation back to its source.">
   <style>
-    :root { --bg:#f6f7f9; --ink:#1a1e24; --muted:#5b636d; --faint:#9aa1ab; --line:#c6ccd4; --accent:#2f5bd0; --soft:#e5ebfa; --node:#fff; }
+    :root { --bg:#f4ecda; --ink:#2b271e; --muted:#5b5340; --faint:#6e6550; --line:#d0bd97; --accent:#3f6630; --soft:#dee8d0; --node:#fbf6ec; }
     @media (prefers-color-scheme: dark) {
-      :root { --bg:#1b1f26; --ink:#e8eaed; --muted:#a3abb6; --faint:#6a727d; --line:#333b45; --accent:#7aa0f5; --soft:#223052; --node:#222730; }
+      :root { --bg:#2a261d; --ink:#ece3d0; --muted:#b5ad98; --faint:#8e846c; --line:#3c3528; --accent:#a6cb8c; --soft:#2f3a25; --node:#332e23; }
     }
     .bg { fill: var(--bg); }
     .card { fill: var(--node); stroke: var(--line); stroke-width: 1.5; }

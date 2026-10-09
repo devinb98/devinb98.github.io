@@ -1,17 +1,21 @@
 /* ------------------------------------------------------------------ *
- *  Design tokens — minimal / technical, dialed back.
- *  One restrained accent; graphite ink on a cool light surface.
+ *  Design tokens — organic: warm sand paper, sage accent.
+ *  Body #EBDBBC + accent #87AE73 (kept as decorative green); the
+ *  interactive accent is a deeper sage so text clears WCAG AA.
  * ------------------------------------------------------------------ */
 :root {
-  --paper: #eceef1;        /* base surface */
-  --surface: #f6f7f9;      /* panels / cards */
-  --surface-2: #ffffff;    /* raised */
-  --ink: #1a1e24;          /* headings + body */
-  --muted: #5b636d;        /* secondary text */
-  --faint: #8a919b;        /* captions, meta */
-  --line: #d7dbe0;         /* hairline borders */
-  --accent: #2f5bd0;       /* links, CTAs, active */
-  --accent-soft: #e5ebfa;  /* accent wash */
+  color-scheme: light;
+  --paper: #ebdbbc;        /* base surface — warm sand */
+  --surface: #f4ecda;      /* panels / cards (lift off the paper) */
+  --surface-2: #fbf6ec;    /* raised, near warm-white */
+  --ink: #2b271e;          /* headings + body — warm espresso */
+  --muted: #5b5340;        /* secondary text */
+  --faint: #6e6550;        /* captions, meta */
+  --line: #d9c8a4;         /* hairline borders */
+  --accent: #3f6630;       /* links, CTAs, active — deep sage (AA) */
+  --accent-soft: #dee8d0;  /* pale sage wash */
+  --accent-2: #87ae73;     /* your sage — decorative fills, diagrams */
+  --on-accent: #ffffff;    /* text/icons on an accent fill */
 
   --font-display: 'Archivo', system-ui, sans-serif;
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
@@ -34,15 +38,17 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     color-scheme: dark;
-    --paper: #14171c;
-    --surface: #1b1f26;
-    --surface-2: #222730;
-    --ink: #e8eaed;
-    --muted: #a3abb6;
-    --faint: #727b86;
-    --line: #2b313a;
-    --accent: #7aa0f5;
-    --accent-soft: #1f2a45;
+    --paper: #211e17;        /* warm near-black */
+    --surface: #2a261d;
+    --surface-2: #332e23;
+    --ink: #ece3d0;          /* warm cream text */
+    --muted: #b5ad98;
+    --faint: #8e846c;
+    --line: #3c3528;
+    --accent: #a6cb8c;       /* bright sage reads on dark */
+    --accent-soft: #2f3a25;
+    --accent-2: #87ae73;
+    --on-accent: #211e17;    /* dark text on light-sage fills */
   }
 }
 
@@ -168,7 +174,7 @@ kbd {
   left: -999px;
   top: 0;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   padding: 0.5rem 1rem;
   z-index: 100;
 }
