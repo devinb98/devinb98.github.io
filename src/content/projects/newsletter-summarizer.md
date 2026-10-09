@@ -14,7 +14,8 @@ specs:
   - { label: 'Model', value: 'Claude' }
   - { label: 'Source', value: 'Gmail API' }
   - { label: 'Runtime', value: 'daily cron' }
-links: []
+links:
+  - { label: 'GitHub', href: 'https://github.com/devinb98/newsletter-summarizer' }
 ---
 
 I subscribe to more newsletters than I can keep up with, so I built something to
