@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Data pipeline: S3 incremental ingestion to dbt to Snowflake to Python analysis.">
+  <style>
+    :root { --bg:#f6f7f9; --ink:#1a1e24; --muted:#5b636d; --line:#c6ccd4; --accent:#2f5bd0; --node:#fff; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#1b1f26; --ink:#e8eaed; --muted:#a3abb6; --line:#333b45; --accent:#7aa0f5; --node:#222730; }
+    }
+    .bg { fill: var(--bg); }
+    .node { fill: var(--node); stroke: var(--line); stroke-width: 1.5; }
+    .hub { stroke: var(--accent); stroke-width: 1.75; }
+    .title { fill: var(--ink); font-family: 'Archivo', system-ui, sans-serif; font-weight: 650; font-size: 20px; }
+    .label { fill: var(--muted); font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; }
+    .flow { stroke: var(--line); stroke-width: 1.75; fill: none; }
+    .arrow { fill: var(--line); }
+  </style>
+  <rect class="bg" x="0" y="0" width="800" height="500" rx="10" />
+  <defs>
+    <marker id="d" markerWidth="10" markerHeight="10" refX="5" refY="8.5" orient="auto">
+      <path class="arrow" d="M0,0 L10,0 L5,9 Z" />
+    </marker>
+  </defs>
+
+  <line class="flow" x1="400" y1="128" x2="400" y2="158" marker-end="url(#d)" />
+  <line class="flow" x1="400" y1="228" x2="400" y2="258" marker-end="url(#d)" />
+  <line class="flow" x1="400" y1="328" x2="400" y2="358" marker-end="url(#d)" />
+
+  <rect class="node" x="250" y="70" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="98" text-anchor="middle">S3</text>
+  <text class="label" x="400" y="116" text-anchor="middle">incremental ingest</text>
+
+  <rect class="node" x="250" y="170" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="198" text-anchor="middle">dbt</text>
+  <text class="label" x="400" y="216" text-anchor="middle">model in-warehouse</text>
+
+  <rect class="node hub" x="250" y="270" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="298" text-anchor="middle">Snowflake</text>
+  <text class="label" x="400" y="316" text-anchor="middle">warehouse</text>
+
+  <rect class="node" x="250" y="370" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="398" text-anchor="middle">Python</text>
+  <text class="label" x="400" y="416" text-anchor="middle">correlate: CPI / fuel / temp</text>
+
+  <text class="label" x="250" y="466">sales vs. unemployment, fuel price, CPI, temperature</text>
+</svg>

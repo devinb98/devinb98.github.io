@@ -16,7 +16,7 @@ specs:
   - { label: 'Phases', value: '4 shipped' }
   - { label: 'Render', value: 'usdrecord' }
 links:
-  - { label: 'source (coming soon)', href: '#' }
+  - { label: 'GitHub', href: 'https://github.com/devinb98/usd-record-player' }
 ---
 
 I wanted to understand how digital twins are actually authored, so I gave

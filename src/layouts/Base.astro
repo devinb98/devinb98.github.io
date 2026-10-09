@@ -44,7 +44,11 @@ const fullTitle = title === 'Devin Bajaj' ? title : `${title} — Devin Bajaj`;
     </main>
     <footer class="footer">
       <div class="wrap footer-inner">
-        <span class="mono">devinb98.github.io</span>
+        <ul class="footer-links">
+          <li><a href="https://github.com/devinb98" class="mono">GitHub</a></li>
+          <li><a href="https://linkedin.com/in/devinbajaj" class="mono">LinkedIn</a></li>
+          <li><a href="mailto:devinb98@gmail.com" class="mono">Email</a></li>
+        </ul>
         <span class="mono footer-year">© {new Date().getFullYear()} Devin Bajaj</span>
       </div>
     </footer>
@@ -61,8 +65,16 @@ const fullTitle = title === 'Devin Bajaj' ? title : `${title} — Devin Bajaj`;
       .footer-inner {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 1rem;
         flex-wrap: wrap;
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        gap: 1.25rem;
+        margin: 0;
+        padding: 0;
       }
       .footer-year {
         color: var(--faint);

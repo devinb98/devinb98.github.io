@@ -1,74 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 300" role="img" aria-label="Pipeline: Gmail inbox feeds a Parser, Summarizer, then Editor agent, which sends a digest back to Gmail.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Vertical pipeline: Gmail inbox into a Parser, Summarizer, then Editor agent, which sends a digest back to Gmail.">
   <style>
-    :root {
-      --bg: #f6f7f9;
-      --ink: #1a1e24;
-      --muted: #5b636d;
-      --line: #c6ccd4;
-      --accent: #2f5bd0;
-      --node: #ffffff;
-    }
+    :root { --bg:#f6f7f9; --ink:#1a1e24; --muted:#5b636d; --line:#c6ccd4; --accent:#2f5bd0; --node:#fff; }
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1b1f26;
-        --ink: #e8eaed;
-        --muted: #a3abb6;
-        --line: #333b45;
-        --accent: #7aa0f5;
-        --node: #222730;
-      }
+      :root { --bg:#1b1f26; --ink:#e8eaed; --muted:#a3abb6; --line:#333b45; --accent:#7aa0f5; --node:#222730; }
     }
     .bg { fill: var(--bg); }
     .node { fill: var(--node); stroke: var(--line); stroke-width: 1.5; }
-    .agent { stroke: var(--accent); }
-    .title { fill: var(--ink); font-family: 'Archivo', system-ui, sans-serif; font-weight: 650; font-size: 17px; }
-    .label { fill: var(--muted); font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: -0.02em; }
-    .flow { stroke: var(--line); stroke-width: 1.5; fill: none; }
+    .agent { stroke: var(--accent); stroke-width: 1.75; }
+    .title { fill: var(--ink); font-family: 'Archivo', system-ui, sans-serif; font-weight: 650; font-size: 20px; }
+    .label { fill: var(--muted); font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; }
+    .step { fill: var(--accent); font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; }
+    .flow { stroke: var(--line); stroke-width: 1.75; fill: none; }
     .arrow { fill: var(--line); }
-    .step { fill: var(--accent); font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; }
   </style>
-
-  <rect class="bg" x="0" y="0" width="860" height="300" rx="8" />
-
-  <!-- flow lines -->
+  <rect class="bg" x="0" y="0" width="800" height="500" rx="10" />
   <defs>
-    <marker id="a" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
-      <path class="arrow" d="M0,0 L9,4.5 L0,9 Z" />
+    <marker id="d" markerWidth="10" markerHeight="10" refX="5" refY="8.5" orient="auto">
+      <path class="arrow" d="M0,0 L10,0 L5,9 Z" />
     </marker>
   </defs>
-  <line class="flow" x1="150" y1="150" x2="196" y2="150" marker-end="url(#a)" />
-  <line class="flow" x1="330" y1="150" x2="376" y2="150" marker-end="url(#a)" />
-  <line class="flow" x1="510" y1="150" x2="556" y2="150" marker-end="url(#a)" />
-  <line class="flow" x1="690" y1="150" x2="736" y2="150" marker-end="url(#a)" />
 
-  <!-- Gmail in -->
-  <rect class="node" x="30" y="118" width="120" height="64" rx="7" />
-  <text class="title" x="90" y="146" text-anchor="middle">Gmail</text>
-  <text class="label" x="90" y="166" text-anchor="middle">inbox</text>
+  <!-- connectors -->
+  <line class="flow" x1="400" y1="92"  x2="400" y2="118" marker-end="url(#d)" />
+  <line class="flow" x1="400" y1="182" x2="400" y2="208" marker-end="url(#d)" />
+  <line class="flow" x1="400" y1="272" x2="400" y2="298" marker-end="url(#d)" />
+  <line class="flow" x1="400" y1="362" x2="400" y2="388" marker-end="url(#d)" />
+
+  <!-- Gmail inbox -->
+  <rect class="node" x="250" y="34" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="62" text-anchor="middle">Gmail</text>
+  <text class="label" x="400" y="80" text-anchor="middle">inbox</text>
 
   <!-- Parser -->
-  <rect class="node agent" x="200" y="112" width="130" height="76" rx="7" />
-  <text class="step" x="265" y="104" text-anchor="middle">agent 01</text>
-  <text class="title" x="265" y="150" text-anchor="middle">Parser</text>
-  <text class="label" x="265" y="170" text-anchor="middle">clean text</text>
+  <rect class="node agent" x="250" y="124" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="152" text-anchor="middle">Parser</text>
+  <text class="label" x="400" y="170" text-anchor="middle">clean text</text>
+  <text class="step" x="566" y="157">01</text>
 
   <!-- Summarizer -->
-  <rect class="node agent" x="380" y="112" width="130" height="76" rx="7" />
-  <text class="step" x="445" y="104" text-anchor="middle">agent 02</text>
-  <text class="title" x="445" y="150" text-anchor="middle">Summarizer</text>
-  <text class="label" x="445" y="170" text-anchor="middle">condense</text>
+  <rect class="node agent" x="250" y="214" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="242" text-anchor="middle">Summarizer</text>
+  <text class="label" x="400" y="260" text-anchor="middle">condense each</text>
+  <text class="step" x="566" y="247">02</text>
 
   <!-- Editor -->
-  <rect class="node agent" x="560" y="112" width="130" height="76" rx="7" />
-  <text class="step" x="625" y="104" text-anchor="middle">agent 03</text>
-  <text class="title" x="625" y="150" text-anchor="middle">Editor</text>
-  <text class="label" x="625" y="170" text-anchor="middle">one digest</text>
+  <rect class="node agent" x="250" y="304" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="332" text-anchor="middle">Editor</text>
+  <text class="label" x="400" y="350" text-anchor="middle">stitch into one digest</text>
+  <text class="step" x="566" y="337">03</text>
 
-  <!-- Gmail out -->
-  <rect class="node" x="740" y="118" width="100" height="64" rx="7" />
-  <text class="title" x="790" y="146" text-anchor="middle">Gmail</text>
-  <text class="label" x="790" y="166" text-anchor="middle">digest</text>
+  <!-- Gmail digest -->
+  <rect class="node" x="250" y="394" width="300" height="56" rx="8" />
+  <text class="title" x="400" y="422" text-anchor="middle">Gmail</text>
+  <text class="label" x="400" y="440" text-anchor="middle">digest, sent back</text>
 
-  <!-- framing labels -->
-  <text class="label" x="30" y="248">langgraph / claude / daily cron</text>
+  <text class="label" x="250" y="480">langgraph / claude / daily cron</text>
 </svg>
