@@ -1,62 +1,168 @@
 ---
 import Base from '../layouts/Base.astro';
 
-// Placeholder CV data — swap for the real thing (and drop resume.pdf in /public).
-const skills = [
-  'Python', 'OpenUSD', 'LangGraph', 'Claude / LLM APIs',
-  'Git & GitHub Actions', '3D / simulation', 'Gmail / Google APIs',
+const title = 'Technical pre-sales / data & AI builder / client advocate';
+
+const summary =
+  "I sit between the business problem and the technical solution. On the pre-sales side I scope ambiguous asks into solutions that win and hold up post-sale; on the build side I ship end-to-end data and AI applications. The two reinforce each other — I demo what I can actually build.";
+
+const skillGroups = [
+  {
+    label: 'pre-sales',
+    items: [
+      'Discovery', 'Technical demos', 'POCs', 'Solution scoping', 'Value selling',
+      'B2B sales', 'Salesforce CRM', 'Stakeholder management', 'Onboarding & training',
+    ],
+  },
+  {
+    label: 'ai & data',
+    items: [
+      'AI / agent workflows (MCP, RAG)', 'Prompt engineering', 'Python', 'SQL', 'dbt',
+      'Snowflake', 'ETL / ELT', 'AWS (S3, Lambda, Glue, Kinesis)', 'Airflow', 'PySpark',
+      'Streamlit', 'Power BI', 'Docker',
+    ],
+  },
+  {
+    label: 'full-stack',
+    items: [
+      'JavaScript / TypeScript', 'React.js', 'Node.js', 'C# / .NET', 'HTML5 / CSS3',
+      'Java', 'Git / CI-CD',
+    ],
+  },
 ];
 
 const experience = [
   {
-    when: '2026',
-    what: 'Self-directed learning projects',
-    detail: 'Robotics simulation in pure OpenUSD; multi-agent systems with Claude.',
+    role: 'Lead Presales Consultant / Associate Manager',
+    org: 'Genpact',
+    place: 'Atlanta, GA',
+    when: 'Feb 2026 – present',
+    points: [
+      'Presales lead on AI and data-platform pursuits — partner with business owners and Gas Power Data Science & AI leadership to turn ambiguous problems into solutions that win and expand accounts.',
+      'Own a $1M book of business targeted for aggressive growth, positioning AI accelerators to shorten time-to-value.',
+      'Scoped a GenAI field-service solution projected to save hundreds of hours a year; built the business case for an agentic field-services assistant for GE Steam with projected savings up to $43M over five years.',
+    ],
   },
+  {
+    role: 'Independent — career break & technical pivot',
+    org: 'Self-directed',
+    place: 'Brooklyn, NY',
+    when: 'Jan 2024 – Jan 2026',
+    points: [
+      'Deepened hands-on data engineering (AWS, SQL, Python) and AI / agent frameworks through structured self-study, mentorship, and the shipped projects on this site.',
+      'Built and deployed several end-to-end data and AI applications while planning a return to a technical, customer-facing role.',
+    ],
+  },
+  {
+    role: 'Sales Director',
+    org: 'Magna Technology Group',
+    place: 'Brooklyn, NY',
+    when: 'Apr 2023 – Dec 2023',
+    points: [
+      "Co-sold with Salesforce AEs as their implementation partner — ran the discovery → scope → proposal motion so AEs could close on combined ACV plus services.",
+      'Supported 500+ Salesforce AEs across verticals, carrying a $1M year-one quota.',
+      "Built demo content on Marketing Cloud Personalization & Data Cloud that 4x'd cold response rate; turned around custom SOWs in as little as 24 hours.",
+    ],
+  },
+  {
+    role: 'Application Development Senior Analyst',
+    org: 'Accenture',
+    place: 'Washington, DC',
+    when: 'Aug 2020 – Apr 2023',
+    points: [
+      'Designed and ran the end-to-end UAT strategy for a global industrial-machinery manufacturer across 3 deployments and 3 facilities — >90% cumulative bug reduction.',
+      'Owned front-end design of a public product-search site for a $4B materials company (React + Ant Design).',
+      'Built full-stack security POCs (HL7 + FHIR on OpenID / Auth0 / Okta) and a Camunda BPMN microservice system in Java / Spring.',
+    ],
+  },
+  {
+    role: 'Software Engineering Intern',
+    org: 'Microsoft — Azure Networking',
+    place: 'Redmond, WA',
+    when: 'Jun 2019 – Sep 2019',
+    points: [
+      'Built a cross-platform multithreaded REST endpoint in .NET Core with a Swagger front-end to test networking across cloud resource groups.',
+      "Wrote the team's first Linux shell scripts to automate VM deployment and shipped its first fully automated dynamic security-key deployment with the Azure Security team.",
+    ],
+  },
+];
+
+const certs = [
+  'Anthropic — Claude Code in Action; Building with Claude Code',
+  'Salesforce — Marketing Cloud Administrator',
+  'dbt Labs — dbt Fundamentals',
+  'Kaggle / Google — 5-Day Agents Intensive',
+  'In progress — AWS Data Engineer Associate; Databricks Gen AI Engineer Associate',
 ];
 ---
 
-<Base title="Resume" description="Resume and background for Devin Bajaj.">
+<Base title="Resume" description="Resume for Devin Bajaj — technical pre-sales and data & AI builder.">
   <section class="section">
     <div class="wrap">
       <header class="page-head">
         <div>
           <h1>Resume</h1>
-          <p class="lede">A short version here; the full PDF is one click away.</p>
+          <p class="title">{title}</p>
+          <p class="contact">
+            <a href="mailto:devinb98@gmail.com" class="mono">devinb98@gmail.com</a>
+            <a href="https://linkedin.com/in/devinbajaj" class="mono">linkedin.com/in/devinbajaj</a>
+          </p>
         </div>
         <a href="/resume.pdf" class="btn mono">Download PDF</a>
       </header>
 
       <div class="cv">
         <section class="block">
-          <h2>Focus</h2>
-          <p>
-            Builder learning across robotics simulation and applied AI. I get up
-            to speed on unfamiliar stacks by shipping real projects, and I
-            document the work as I go.
-          </p>
+          <p class="summary">{summary}</p>
         </section>
 
         <section class="block">
           <h2>Skills</h2>
-          <ul class="skills">
-            {skills.map((s) => <li class="mono">{s}</li>)}
-          </ul>
+          <div class="skills">
+            {skillGroups.map((g) => (
+              <div class="skill-group">
+                <p class="group-label mono">{g.label}</p>
+                <ul class="chips">
+                  {g.items.map((s) => <li class="mono">{s}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section class="block">
-          <h2>Recent</h2>
-          <dl class="exp">
+          <h2>Experience</h2>
+          <div class="exp">
             {experience.map((e) => (
-              <div class="exp-row">
-                <dt class="mono">{e.when}</dt>
-                <dd>
-                  <strong>{e.what}</strong>
-                  <span>{e.detail}</span>
-                </dd>
-              </div>
+              <article class="role">
+                <header class="role-head">
+                  <h3>{e.role}<span class="org">, {e.org}</span></h3>
+                  <p class="role-meta mono">
+                    <span>{e.place}</span>
+                    <span>{e.when}</span>
+                  </p>
+                </header>
+                <ul class="points">
+                  {e.points.map((p) => <li>{p}</li>)}
+                </ul>
+              </article>
             ))}
-          </dl>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>Education</h2>
+          <div class="edu">
+            <h3>Northwestern University<span class="org">, Evanston, IL</span></h3>
+            <p class="edu-detail">B.S., Computer Engineering</p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>Certifications</h2>
+          <ul class="certs">
+            {certs.map((c) => <li>{c}</li>)}
+          </ul>
         </section>
       </div>
     </div>
@@ -67,7 +173,7 @@ const experience = [
   .page-head {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 1.5rem;
     flex-wrap: wrap;
     margin-bottom: 2.5rem;
@@ -76,10 +182,17 @@ const experience = [
   }
   .page-head h1 {
     font-size: var(--step-4);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
-  .lede {
+  .title {
     color: var(--muted);
+    margin: 0 0 0.75rem;
+    font-size: var(--step-1);
+  }
+  .contact {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
     margin: 0;
   }
   .btn {
@@ -99,58 +212,106 @@ const experience = [
 
   .cv {
     display: grid;
-    gap: 2.5rem;
-    max-width: var(--measure);
+    gap: 2.75rem;
   }
   .block h2 {
     font-size: var(--step-1);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--line);
   }
-  .block p {
+  .summary {
     margin: 0;
-    color: var(--ink);
+    font-size: var(--step-1);
+    line-height: 1.6;
+    max-width: var(--measure);
   }
+
+  /* skills */
   .skills {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .skill-group {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .group-label {
+    color: var(--accent);
+    padding-top: 0.35rem;
+  }
+  .chips {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
-  .skills li {
+  .chips li {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 4px;
-    padding: 0.3rem 0.65rem;
+    padding: 0.25rem 0.6rem;
     color: var(--muted);
+    font-size: var(--step--1);
   }
+
+  /* experience */
   .exp {
-    margin: 0;
     display: grid;
+    gap: 2rem;
+  }
+  .role-head {
+    margin-bottom: 0.6rem;
+  }
+  .role-head h3 {
+    font-size: var(--step-1);
+  }
+  .org {
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .role-meta {
+    display: flex;
     gap: 1.25rem;
-  }
-  .exp-row {
-    display: grid;
-    grid-template-columns: 5rem 1fr;
-    gap: 1.5rem;
-  }
-  .exp-row dt {
+    flex-wrap: wrap;
+    margin: 0.3rem 0 0;
     color: var(--faint);
   }
-  .exp-row dd {
+  .points {
     margin: 0;
-    display: grid;
-    gap: 0.25rem;
+    padding-left: 1.1rem;
+    max-width: var(--measure);
   }
-  .exp-row dd span {
+  .points li {
+    margin-bottom: 0.45rem;
+    line-height: 1.55;
+  }
+
+  .edu h3 {
+    font-size: var(--step-1);
+  }
+  .edu-detail {
     color: var(--muted);
+    margin: 0.3rem 0 0;
+  }
+
+  .certs {
+    margin: 0;
+    padding-left: 1.1rem;
+    max-width: var(--measure);
+  }
+  .certs li {
+    margin-bottom: 0.4rem;
   }
 
   @media (max-width: 560px) {
-    .exp-row {
+    .skill-group {
       grid-template-columns: 1fr;
-      gap: 0.25rem;
+      gap: 0.4rem;
     }
   }
 </style>
