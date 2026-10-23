@@ -3,7 +3,7 @@ title: Building The Right Mindset
 date: 2026-10-23
 summary: What a rejection call taught me — and the three-step mindset shift that replaced my old spiral.
 tags: [career, mindset, jobsearch]
-draft: true
+draft: false
 ---
 
 Today, I got a rejection call from a recruiter.
